@@ -5,8 +5,11 @@ import Features from "./component/Features";
 import Footer from "./component/Footer";
 import Home from "./component/Home";
 import IconeLine from "./component/IconeLine";
+import SendInquiry from "./component/SendInquiry";
 import LoggedHome from "./component/LoggedHome";
 import Navbar from "./component/Navbar";
+import Tapping from "./component/Tapping";
+import Login from "./component/Login";
 
 function App() {
   return (
@@ -19,10 +22,14 @@ function App() {
 
       <Navbar />
       {/* <Home /> */}
-      <LoggedHome/>
+       <LoggedHome/>
       <Features/>
-      <About/>
+      <About/> 
       <ContactUs/>
+     
+      <SendInquiry/>
+      <Login/>
+      <Tapping/>
       <IconeLine/>
       <Footer/>
     </>

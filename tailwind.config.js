@@ -13,8 +13,9 @@ export default {
        "pink": "EE9AE5",
        "green":"#15DC41",
        "dark_grenn":"#297239",
-       "light_blue" : "#414751",
-       "icon_background":"#F6F6F6"
+      //  "light_blue" : "#414751",
+       "icon_background":"#F6F6F6",
+       "light_blue":"#E3EBEC"
       },
       boxShadow : {
         '3xl':'0px 10px 50px 0px rgba(0 ,0 , 0, 0.15)',

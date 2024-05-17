@@ -8,7 +8,7 @@ import supervisorImg from "../assets/supervisor.png";
 
 const ContactUs = () => {
   return (
-    <div className="md:px-14 px-4 max-w-screen-2xl mx-auto my-24">
+    <div className="md:px-14 px-4 max-w-screen-2xl mx-auto my-28">
       <motion.div
         variants={fadeIn("left", 0.2)}
         initial="hidden"
@@ -93,7 +93,7 @@ const ContactUs = () => {
 
         </div>
       
-       <div className="flex flex-col md:flex-row justify-center  items-center gap-8 mt-10 ">
+       <div className="flex flex-col md:flex-row justify-center  items-center gap-8 mt-10 m- ">
           {/* Supervisor Card */}
           <div className="bg-[rgba(255,255,255,0.04)] rounded-[35px] shadow-3xl p-6 flex flex-col items-center text-center hover:translate-y-4 transition-all duration-300 cursor-pointer">
             <img
@@ -140,6 +140,7 @@ const ContactUs = () => {
               Email: mark.johnson@lalanrubbers.com
             </p>
           </div>
+          
         </div>
       
       </div>
