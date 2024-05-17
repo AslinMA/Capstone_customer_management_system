@@ -20,7 +20,7 @@ const Navbar = () => {
   ];
   return (
     <>
-      <nav className="bg-white md:px-14 p-4 max-w-screen-2xl mx-auto text-primary fixed top-0 right-0 left-0">
+      <nav className="bg-white md:px-12  max-w-screen-2xl mx-auto text-primary fixed top-0 right-0 left-0">
         <div className="text-lg container mx-auto flex justify-between items-center font-medium">
           <div className="flex space-x items-center">
             <a
@@ -59,7 +59,7 @@ const Navbar = () => {
           </div>
 
           {/*======================================= manu butten.only display on mobile ======================================*/}
-          <div className="md:hidden">
+          <div className="md:hidden px-4">
             <button
               onClick={toggleMenu}
               className="text-white text-lg focus:outline-none

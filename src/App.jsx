@@ -1,9 +1,11 @@
 import "./App.css";
 import About from "./component/About";
+import ContactUs from "./component/ContactUs";
 import Features from "./component/Features";
 import Footer from "./component/Footer";
 import Home from "./component/Home";
 import IconeLine from "./component/IconeLine";
+import LoggedHome from "./component/LoggedHome";
 import Navbar from "./component/Navbar";
 
 function App() {
@@ -16,9 +18,11 @@ function App() {
     </h1> */}
 
       <Navbar />
-      <Home />
+      {/* <Home /> */}
+      <LoggedHome/>
       <Features/>
       <About/>
+      <ContactUs/>
       <IconeLine/>
       <Footer/>
     </>

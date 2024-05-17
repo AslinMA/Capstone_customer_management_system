@@ -36,7 +36,7 @@ const Features = () => {
             {/*================== 1st cart======================= */}
             <div className="bg-[rgba(255,255,255,0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex  justify-center items-center hover:translate-y-4 transtion-all duration-300 cursor-pointer">
               <div>
-                <img src={fretureImg_seftyglue} alt="" className="rounded" />
+                <img src={fretureImg_seftyglue} alt="" className="rounded-full" />
                 <h5 className=" mb-2 text-2xl font-semibold text-primary px-5 text-center ">
                   Sefty Gloves
                 </h5>
@@ -50,7 +50,7 @@ const Features = () => {
             {/*================== 2nd cart======================= */}
             <div className="bg-[rgba(255,255,255,0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex  justify-center items-center hover:translate-y-4 transtion-all duration-300 cursor-pointer md:mt-16">
               <div>
-                <img src={fretureImg_Sergicalglue} alt="" className="rounded" />
+                <img src={fretureImg_Sergicalglue} alt="" className="rounded-full" />
                 <h5 className=" mb-2 text-2xl font-semibold text-primary px-5 text-center ">
                   Surgical Gloves
                 </h5>
@@ -64,7 +64,7 @@ const Features = () => {
             {/*================== 3rd cart======================= */}
             <div className="bg-[rgba(255,255,255,0.04)] rounded-[35px] h-96 shadow-3xl p-8 items-center flex  justify-center items-center hover:translate-y-4 transtion-all duration-300 cursor-pointer">
               <div className="rounded">
-                <img src={fretureImg_pillow} alt="" className="rounded" />
+                <img src={fretureImg_pillow} alt="" className="rounded-full" />
                 <h5 className=" mb-2 text-2xl font-semibold text-primary px-5 text-center ">
                   Natural Latex Pillow
                 </h5>
