@@ -12,6 +12,7 @@ export default {
        "tartiary":"#707070",
        "pink": "EE9AE5",
        "green":"#15DC41",
+       "Lgreen":"#64d178",
        "dark_grenn":"#297239",
       //  "light_blue" : "#414751",
        "icon_background":"#F6F6F6",

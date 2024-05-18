@@ -12,6 +12,7 @@ import Tapping from "./component/Tapping";
 import Login from "./component/Login";
 import SignUp from "./component/SignUp";
 import Bills from "./component/Bills";
+import TermsAndConditions from "./component/TermsAndConditions";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <SignUp/>
       <Tapping/>
       <Bills/>
+      <TermsAndConditions/>
       <IconeLine/>
       <Footer/>
     </>

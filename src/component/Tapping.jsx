@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import { FaFilter } from "react-icons/fa"; // Import the FaFilter icon
+import React, { useState, useEffect } from "react";
 import dummyData from "./dummyData"; // Ensure this is correctly imported
+
+const TABLE_HEAD = ["Date", "Liters", "Ammonia Addition", "TMTD Addition"];
 
 const Tapping = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [showFilters, setShowFilters] = useState(false);
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
+  const [filteredRows, setFilteredRows] = useState(dummyData);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    filterByDateRange();
+  }, [dateRange]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -20,134 +25,113 @@ const Tapping = () => {
     }));
   };
 
-  const handleFilterClick = () => {
-    setShowFilters(!showFilters);
+  const filterByDateRange = () => {
+    const startDate = new Date(dateRange.start);
+    const endDate = new Date(dateRange.end);
+    const filtered = dummyData.filter((item) => {
+      const itemDate = new Date(item.date);
+      return (
+        (!isNaN(startDate) ? itemDate >= startDate : true) &&
+        (!isNaN(endDate) ? itemDate <= endDate : true)
+      );
+    });
+    setFilteredRows(filtered);
   };
 
-  const handleTotalClick = () => {
-    const filteredData = dummyData.filter((item) => {
-      const itemDate = new Date(item.date);
-      const startDate = new Date(dateRange.start);
-      const endDate = new Date(dateRange.end);
-      return itemDate >= startDate && itemDate <= endDate;
-    });
-    const total = filteredData.reduce((acc, item) => acc + item.liters, 0);
-    alert(`Total Liters: ${total}`);
+  const calculateTotalLiters = () => {
+    return filteredRows.reduce((total, row) => total + row.liters, 0);
   };
+
+  const totalLiters = calculateTotalLiters();
 
   const renderTableData = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
-    const selectedData = dummyData.slice(startIndex, startIndex + itemsPerPage);
+    const selectedData = filteredRows.slice(startIndex, startIndex + itemsPerPage);
     return selectedData.map((item, index) => (
-      <tr key={index} className="hover:bg-icon_background bg-white shadow-1xl">
-        <td className="px-5 py-2 font-semibold text-primary">{item.date}</td>
-        <td className="px-5 py-2 font-bold text-primary">
-          {item.liters} liter
-        </td>
-        <td className="px-7 py-2 font-bold text-primary">
-          {item.ammonia} liter
-        </td>
-        <td className="px-7 py-2 font-bold text-primary">{item.tmtd} liter</td>
+      <tr key={index} className="hover:bg-gray-100 bg-white">
+        <td className="p-4 text-blue-gray-600 text-sm font-normal">{item.date}</td>
+        <td className="p-4 text-blue-gray-600 text-sm font-normal">{item.liters} liter</td>
+        <td className="p-4 text-blue-gray-600 text-sm font-normal">{item.ammonia} liter</td>
+        <td className="p-4 text-blue-gray-600 text-sm font-normal">{item.tmtd} liter</td>
       </tr>
     ));
   };
 
   return (
-    <div className="md:px-14 px-4 max-w-screen-2xl mx-auto my-24">
-      <h2 className="text-5xl text-primary font-bold mb-10 text-left">
-        Tapping Deatils
-      </h2>
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex justify-between w-full items-center ">
-          <div>
-            <button
-              onClick={handleFilterClick}
-              className="bg-gray-200 text-black px-4 py-2 rounded-full flex items-center hover:shadow-3xl"
-            >
-              <FaFilter className="mr-2" />
-              Filter
-            </button>
-          </div>
-          <div>
-              serch
-          </div>
-        </div>
+    <div className="m-4 md:m-10 relative">
+      <div className="">
+        <h1 className="text-2xl md:text-4xl text-primary font-bold mb-4 px-4 md:px-10">
+          Tapping Details
+        </h1>
+      </div>
+      <div className="flex justify-center md:justify-end md:flex-row mb-4 px-4 md:px-10">
+  <div className="flex flex-wrap items-center justify-center md:justify-start w-full md:w-auto">
+    <input
+      type="date"
+      value={dateRange.start}
+      onChange={(e) => handleDateChange(e, "start")}
+      className="border px-3 py-2 mb-2 md:mb-0 mr-2 w-full md:w-auto"
+    />
+    <p className="font-primary mr-2 font-bold">To</p>
+    <input
+      type="date"
+      value={dateRange.end}
+      onChange={(e) => handleDateChange(e, "end")}
+      className="border px-3 py-2 mb-2 md:mb-0 w-full md:w-auto"
+    />
+    <button
+      onClick={filterByDateRange}
+      className="bg-primary text-white px-4 py-2 rounded ml-2 w-full md:w-auto hover:shadow-3xl"
+    >
+      Search
+    </button>
+  </div>
+</div>
 
-        <button
-          onClick={handleTotalClick}
-          className="bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-all duration-300"
-        >
-          Total Tapping
-        </button>
-      </div>
-      {showFilters && (
-        <div className="flex justify-center items-center mb-5">
-          <input
-            type="date"
-            value={dateRange.start}
-            onChange={(e) => handleDateChange(e, "start")}
-            className="border px-3 py-2 mr-2"
-          />
-          <p className=" font-primary mr-2 font-bold"> To</p>
-          <input
-            type="date"
-            value={dateRange.end}
-            onChange={(e) => handleDateChange(e, "end")}
-            className="border px-3 py-2"
-          />
+      <div className="h-full w-full rounded-lg bg-white px-4 md:px-20">
+        <div className="overflow-auto p-4">
+          <table className="w-full min-w-max table-auto text-center">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 cursor-pointer"
+                  >
+                    <div className="text-blue-gray-600 text-sm font-normal leading-none opacity-70">
+                      {head}
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>{renderTableData()}</tbody>
+            <tr>
+              <td className="p-4 font-bold text-blue-gray-600 text-sm">Total Liters</td>
+              <td className="p-4 font-bold text-white bg-primary text-sm text-center" colSpan={1}>
+                {totalLiters} liters
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-between border-t border-blue-gray-50 p-4">
           <button
-            onClick={handleFilterClick}
-            className="bg-primary text-white px-4 py-2 rounded ml-2 hover:shadow-3xl"
+            type="button"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="bg-green text-white font-bold py-3 px-8 rounded mb-2 md:mb-0 hover:bg-dark_green transition-all duration-300 shadow-3xl disabled:opacity-50"
           >
-            Apply
+            Previous
           </button>
-          {/* ///---------------------------this butten is total cal------------------------ */}
           <button
-            // onClick={handleFilterClick}
-            className="bg-primary text-white px-4 py-2 rounded ml-2 hover:shadow-3xl"
+            type="button"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === Math.ceil(filteredRows.length / itemsPerPage)}
+            className="bg-green text-white font-bold py-3 px-8 rounded hover:bg-dark_green transition-all duration-300 shadow-3xl disabled:opacity-50"
           >
-            Total Latex
+            Next
           </button>
         </div>
-      )}
-      <div className="overflow-x-auto">
-        <table className="w-full text-center table-fixed ">
-          <thead>
-            <tr className="border-b border-gray-300">
-              <th className="px-4 py-2 text-gray-600 text-sm font-bold">
-                Date
-              </th>
-              <th className="px-4 py-2 text-gray-600 text-sm font-bold">
-                Liters
-              </th>
-              <th className="px-4 py-2 text-gray-600 text-sm font-bold">
-                Ammonia Addition
-              </th>
-              <th className="px-4 py-2 text-gray-600 text-sm font-bold">
-                TMTD Addition
-              </th>
-            </tr>
-          </thead>
-          <tbody>{renderTableData()}</tbody>
-        </table>
-      </div>
-      <div className="mt-6 flex justify-center items-center">
-        {Array.from(
-          { length: Math.ceil(dummyData.length / itemsPerPage) },
-          (_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index + 1)}
-              className={`mx-1 px-3 py-1 rounded-full ${
-                currentPage === index + 1
-                  ? "bg-gray-600 text-white"
-                  : "bg-gray-200 text-gray-600"
-              }`}
-            >
-              {index + 1}
-            </button>
-          )
-        )}
       </div>
     </div>
   );
