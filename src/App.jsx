@@ -10,6 +10,8 @@ import LoggedHome from "./component/LoggedHome";
 import Navbar from "./component/Navbar";
 import Tapping from "./component/Tapping";
 import Login from "./component/Login";
+import SignUp from "./component/SignUp";
+import Bills from "./component/Bills";
 
 function App() {
   return (
@@ -29,7 +31,9 @@ function App() {
      
       <SendInquiry/>
       <Login/>
+      <SignUp/>
       <Tapping/>
+      <Bills/>
       <IconeLine/>
       <Footer/>
     </>

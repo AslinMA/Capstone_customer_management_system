@@ -140,8 +140,8 @@ const Tapping = () => {
               onClick={() => handlePageChange(index + 1)}
               className={`mx-1 px-3 py-1 rounded-full ${
                 currentPage === index + 1
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-300 text-gray-600"
+                  ? "bg-gray-600 text-white"
+                  : "bg-gray-200 text-gray-600"
               }`}
             >
               {index + 1}
