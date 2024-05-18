@@ -52,7 +52,7 @@ const SendInquiry = () => {
 
   return (
     <div className="md:px-14 px-4 max-w-screen-2xl mx-auto my-28">
-      <h2 className="text-5xl text-primary font-bold mb-10 text-center">SEND AN INQUIRY</h2>
+      <h2 className="text-5xl text-primary font-bold mb-10 text-left">SEND AN INQUIRY</h2>
       <form onSubmit={handleSubmit} className=" p-8 lg:w-1/2 mx-auto">
         {/* Name */}
         <div className="mb-6">
